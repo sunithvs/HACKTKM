@@ -59,8 +59,8 @@ class PoolingRequestSerializer(serializers.ModelSerializer):
         representation = super().to_representation(instance)
 
         representation['location'] = {
-            'lat': instance.location.y if instance.location else 0,
-            'long': instance.location.x if instance.location else 0,
-            'srid': instance.location.srid if instance.location else 0
+            'lat': instance.location.y if instance.location else 0.0,
+            'long': instance.location.x if instance.location else 0.0,
+            'srid': instance.location.srid if instance.location else 0.0
         }
         return representation
