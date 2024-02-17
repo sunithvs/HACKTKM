@@ -17,3 +17,5 @@ staticfiles
 *.log
 
 .vscode
+
+media
