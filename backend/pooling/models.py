@@ -1,7 +1,6 @@
+from auth_login.models import User
 from django.contrib.gis.db import models
 from django.db.models import Sum
-
-from auth_login.models import User
 
 
 class PoolingRequest(models.Model):
@@ -14,6 +13,8 @@ class PoolingRequest(models.Model):
     name = models.CharField(max_length=255)
     product_link = models.URLField(max_length=255)
     image = models.ImageField(upload_to="pooling", blank=True, null=True)
+    location = models.PointField(blank=True, null=True)
+
 
     @property
     def total_amount_received(self):

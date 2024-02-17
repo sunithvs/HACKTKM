@@ -22,7 +22,7 @@ class PoolingRequestSerializer(serializers.ModelSerializer):
         model = PoolingRequest
         fields = ['id', 'name', 'user', 'region', 'service_description', 'total_amount_requested',
                   'is_fulfilled', 'created_at', 'total_amount_received', 'remaining_amount_to_be_pooled', 'donations',
-                  'image']
+                  'image', 'location']
         read_only_fields = ['is_fulfilled', 'total_amount_received', 'remaining_amount_to_be_pooled']
 
     def create(self, validated_data):
@@ -35,3 +35,13 @@ class PoolingRequestSerializer(serializers.ModelSerializer):
 
         validated_data['user'] = user
         return super().create(validated_data)
+
+    def to_representation(self, instance):
+        # Convert the location to a dictionary with 'lat', 'long', and 'srid' fields
+        representation = super().to_representation(instance)
+        representation['location'] = {
+            'lat': instance.location.y,
+            'long': instance.location.x,
+            'srid': instance.location.srid
+        }
+        return representation
