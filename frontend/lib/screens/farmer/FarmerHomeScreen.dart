@@ -8,6 +8,7 @@ import 'package:hacktkm_frontend/screens/farmer/farmerRentals.dart';
 
 import 'package:ionicons/ionicons.dart';
 import '../../helpers/custom_colors.dart';
+import 'farmerProfile.dart';
 
 
 class FarmerHomeScreen extends StatefulWidget {
@@ -22,7 +23,8 @@ class _FarmerHomeScreenState extends State<FarmerHomeScreen> {
 
   List<Widget> screen = [
     const FarmerRentals(),
-    const FarmerPooling()
+    const FarmerPooling(),
+    const FarmerProfile(),
 
   ];
 
@@ -60,7 +62,7 @@ class _FarmerHomeScreenState extends State<FarmerHomeScreen> {
               icon: Icon(Ionicons.person_circle_outline), label: " "),
           const BottomNavigationBarItem(
               icon: Icon(
-                Ionicons.settings_outline,
+                Ionicons.chatbox_ellipses_outline,
               ),
               label: " ")
         ],

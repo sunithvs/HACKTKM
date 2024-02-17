@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:hacktkm_frontend/models/poolingModel.dart';
@@ -45,6 +46,35 @@ class RentalProvider extends ChangeNotifier {
     print(_rentals);
     notifyListeners();
   }
+  Future<void> addRentItem(
+      {required String name,
+      required String description,
+      required String quantity,
+      required double price,
+        required File image,
+      required double lat,
+      required double long}) async {
+    final url = Uri.parse("$baseUrl/farmer/rental-items/");
+    final request = http.MultipartRequest('POST', url);
+    final data = {
+      "name": name,
+      "description": description,
+      "available_quantity":quantity,
+      "category_name":"agriculture",
+      "rental_price_per_day": price.toString(),
+      "location_lat": lat.toString(),
+      "location_long": long.toString()
+    };
+    request.fields.addAll(data);
+    final bytes = await image.readAsBytes();
+    request.files.add(http.MultipartFile.fromBytes("image", bytes,
+        filename: image.path.split("/").last));
+    var response = await request.send();
+
+    final value = await response.stream.bytesToString();
+    final responseData = jsonDecode(value);
+
+  }
 
   Future<void> fetchPoolings() async {
     final url = Uri.parse("$baseUrl/pooling/pooling-items/");
@@ -53,26 +83,39 @@ class RentalProvider extends ChangeNotifier {
     final data = json.decode(response.body)["results"] as List;
     List<Pooling> loadedPoolings = [];
     print(data.length);
+    print(data[0]);
     try {
       for (var i in data) {
+        print((i["location"]["lat"]));
         loadedPoolings.add(Pooling(
           name: i["name"],
           imageUrl: i["image"],
           description: i["service_description"],
-          lat: i["location"]["lat"],
+          lat: i["location"]["lat"] as double,
           long: i["location"]["long"],
-          total_amount: i["total_amount_requested'"],
-          total_amount_received: i["total_amount_received"],
+          total_amount: double.parse(i["total_amount_requested"]),
+          total_amount_received: double.parse(i["total_amount_received"]),
         ));
       }
     } catch (e) {
       print(e);
     }
 
-    print("done fetching rentals");
+    print("done fetching pooling");
 
     _poolings = loadedPoolings;
 
     notifyListeners();
+  }
+  Future<void> addPoolingItem(String name, String description, double totalAmount, double lat, double long) async {
+    final url = Uri.parse("$baseUrl/pooling/pooling-items/");
+    final response = await http.post(url, body: {
+      "name": name,
+      "service_description": description,
+      "total_amount_requested": totalAmount.toString(),
+      "location": json.encode({"lat": lat, "long": long})
+    });
+    print(response.body);
+    fetchPoolings();
   }
 }

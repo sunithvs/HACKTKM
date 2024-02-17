@@ -28,10 +28,13 @@ class _FarmerPoolingState extends State<FarmerPooling> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: CustomColors.primaryColor,
-        title:  Text('Pooling',style: GoogleFonts.dmSans(fontWeight: FontWeight.w600,color: Colors.black87),),
+        title:  Text('Pool Equipment',style: GoogleFonts.dmSans(fontWeight: FontWeight.w600,color: Colors.black87),),
+        actions: [
+          IconButton(onPressed: (){}, icon: Icon(Icons.add))
+        ],
       ),
       body:  poolings.isEmpty?
-      Center(child: Text('No Rentals Found',style: GoogleFonts.dmSans(fontWeight: FontWeight.w600,fontSize: size.width*.05),),)
+      Center(child: Text('No Pooling request Found',style: GoogleFonts.dmSans(fontWeight: FontWeight.w600,fontSize: size.width*.05),),)
           :
       ListView.builder(itemBuilder: (context,index){
         return  PoolingCard(poolings[index]);

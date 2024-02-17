@@ -27,7 +27,12 @@ class _FarmerRentalsState extends State<FarmerRentals> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: CustomColors.primaryColor,
-        title:  Text('Rent Your equipments',style: GoogleFonts.dmSans(fontWeight: FontWeight.w600,color: Colors.black87),),
+        title:  Text('Rent Equipments',style: GoogleFonts.dmSans(fontWeight: FontWeight.w600,color: Colors.black87),),
+        actions: [
+          IconButton(onPressed: (){
+            Navigator.of(context).pushNamed('/addRental');
+          }, icon: Icon(Icons.add))
+        ],
       ),
       body:
 
