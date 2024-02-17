@@ -28,7 +28,7 @@ class PoolingRequest(models.Model):
 
     def save(self, *args, **kwargs):
         # Update is_fulfilled based on the current and total amounts
-        self.is_fulfilled = self.current_amount_pooled >= self.total_amount_requested
+        self.is_fulfilled = self.total_amount_received >= self.total_amount_requested
         super().save(*args, **kwargs)
 
 
