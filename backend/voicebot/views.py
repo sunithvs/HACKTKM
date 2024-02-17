@@ -118,9 +118,10 @@ class VoiceChatViewSet(viewsets.ModelViewSet):
         # Google Cloud Speech-to-Text configuration (replace with your GCP project ID and credentials)
         client = speech_v1.SpeechClient.from_service_account_json(settings.GOOGLE_SERVICE_ACCOUNT)
         config = speech_v1.RecognitionConfig(
-            encoding=speech_v1.RecognitionConfig.AudioEncoding.MP3,
+            encoding=speech_v1.RecognitionConfig.AudioEncoding.FLAC,
             language_code='ml-IN',
-            sample_rate_hertz=16000
+            sample_rate_hertz=16000,
+
         )
         audio = speech_v1.RecognitionAudio(content=audio_file.read())
         # Google Cloud Speech-to-Text recognition
