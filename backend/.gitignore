@@ -19,3 +19,4 @@ staticfiles
 .vscode
 
 media
+google_cloud.json
