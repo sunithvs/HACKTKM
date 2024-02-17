@@ -15,7 +15,8 @@ class ProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ['id', 'name', 'description', 'category', 'farmer', 'quantity', 'unit_price']
+        fields = ['id', 'name', 'description', 'category', 'farmer', 'quantity', 'unit_price', 'image']
+        read_only_fields = ['farmer']
 
     def create(self, validated_data):
         # Extract the farmer from the context or use the first user in the database
