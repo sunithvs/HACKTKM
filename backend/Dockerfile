@@ -19,9 +19,6 @@ RUN apt-get update \
         libgdal-dev \
         && rm -rf /var/lib/apt/lists/*
 
-RUN pip install --upgrade pip
-
-# Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
 

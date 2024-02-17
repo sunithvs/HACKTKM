@@ -4,6 +4,8 @@
 
 import os
 
+from google.auth import load_credentials_from_file
+
 from .base import *
 
 REST_FRAMEWORK = {
@@ -275,3 +277,10 @@ LOGGING = {
         },
     }
 }
+
+GOOGLE_SERVICE_ACCOUNT = os.path.join(BASE_DIR, 'google_cloud.json')
+
+credentials, project_id = load_credentials_from_file(GOOGLE_SERVICE_ACCOUNT)
+OPENAI_SECRET_KEY = env.str("OPENAPI_SECRET_KEY",
+                            default="django-insecure-cag@!muz(kv)t31hxk6w3b)^vzt62_n1wo8&@89)ueefs6p4-7")
+OPENAI_URL = "http://farmer.radr.in/gpt/"

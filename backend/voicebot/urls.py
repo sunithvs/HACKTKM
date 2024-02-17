@@ -1,7 +1,10 @@
-# myapp/urls.py
-from django.urls import path
-from .views import GPTTranslationAPI
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
 
+from .views import VoiceChatViewSet
+
+router = DefaultRouter()
+router.register("chat", VoiceChatViewSet, basename='voice-chat')
 urlpatterns = [
-    path('chat/', GPTTranslationAPI.as_view(), name='gpt_translation_api'),
+    path('', include(router.urls)),
 ]

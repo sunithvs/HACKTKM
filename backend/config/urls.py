@@ -52,7 +52,7 @@ urlpatterns = [
         include("pooling.urls")),
     path(
         "voice/",
-        include("pooling.urls")),
+        include("voicebot.urls")),
     path(
         settings.ADMIN_URL,
         admin.site.urls),
