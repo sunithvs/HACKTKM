@@ -138,7 +138,6 @@ class LoginView(generics.GenericAPIView):
                 if user:
                     if user.check_password(password):
                         token = RefreshToken.for_user(user)
-                        print(token.access_token)
                         return Response({
                             'refresh': str(token),
                             'access': str(token.access_token),
