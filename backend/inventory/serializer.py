@@ -12,11 +12,13 @@ class ProductCategorySerializer(serializers.ModelSerializer):
 
 class ProductSerializer(serializers.ModelSerializer):
     category = ProductCategorySerializer()
+    category_name = serializers.CharField(source='category.name')
+
 
     class Meta:
         model = Product
-        fields = ['id', 'name', 'description', 'category', 'farmer', 'quantity', 'unit_price', 'image']
-        read_only_fields = ['farmer']
+        fields = ['id', 'name', 'description', 'category', 'farmer', 'quantity', 'unit_price', 'image', 'category_name']
+        read_only_fields = ['farmer', 'category_name']
 
     def create(self, validated_data):
         # Extract the farmer from the context or use the first user in the database
@@ -25,6 +27,7 @@ class ProductSerializer(serializers.ModelSerializer):
         if not farmer:
             try:
                 farmer = User.objects.first()
+                print(farmer, "farmer")
             except User.DoesNotExist:
                 raise serializers.ValidationError("No users available in the database.")
 

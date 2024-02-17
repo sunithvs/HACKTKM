@@ -15,14 +15,3 @@ class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
-    def perform_create(self, serializer):
-        # Associate the product with the authenticated user or the first user in the database
-        farmer = self.request.user if self.request.user.is_authenticated else None
-
-        if not farmer:
-            try:
-                farmer = User.objects.first()
-            except User.DoesNotExist:
-                raise serializers.ValidationError("No users available in the database.")
-
-        serializer.save(farmer=farmer)
