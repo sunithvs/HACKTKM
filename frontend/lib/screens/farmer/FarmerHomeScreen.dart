@@ -53,16 +53,7 @@ class _FarmerHomeScreenState extends State<FarmerHomeScreen> {
                 index == 1 ? Ionicons.search_sharp : Ionicons.search_outline,
               ),
               label: " "),
-          BottomNavigationBarItem(
-              icon: IconButton(
-                  onPressed: () async {
 
-                  },
-                  icon: const Icon(
-                    Ionicons.add_circle_outline,
-                    size: 30,
-                  )),
-              label: " "),
           const BottomNavigationBarItem(
               icon: Icon(Ionicons.person_circle_outline), label: " "),
           const BottomNavigationBarItem(
