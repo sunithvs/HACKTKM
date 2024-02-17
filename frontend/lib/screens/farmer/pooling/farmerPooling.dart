@@ -4,8 +4,8 @@ import 'package:hacktkm_frontend/helpers/custom_colors.dart';
 import 'package:hacktkm_frontend/widgets/poolingCard.dart';
 import 'package:provider/provider.dart';
 
-import '../../providers/rentalServices.dart';
-import '../../widgets/rentalCard.dart';
+import '../../../providers/rentalServices.dart';
+import '../../../widgets/rentalCard.dart';
 class FarmerPooling extends StatefulWidget {
   const FarmerPooling({super.key});
 

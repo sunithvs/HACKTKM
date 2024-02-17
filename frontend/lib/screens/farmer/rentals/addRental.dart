@@ -10,8 +10,8 @@ import 'package:location/location.dart';
 import 'package:provider/provider.dart';
 
 
-import '../../helpers/custom_colors.dart';
-import '../../providers/rentalServices.dart';
+import '../../../helpers/custom_colors.dart';
+import '../../../providers/rentalServices.dart';
 
 class AddRental extends StatefulWidget {
    const AddRental({super.key});

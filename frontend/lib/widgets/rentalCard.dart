@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hacktkm_frontend/helpers/custom_route_animations.dart';
-import 'package:hacktkm_frontend/screens/farmer/rentalDetails.dart';
+import 'package:hacktkm_frontend/screens/farmer/rentals/rentalDetails.dart';
 
 import '../helpers/custom_colors.dart';
 import '../models/rentalModel.dart';

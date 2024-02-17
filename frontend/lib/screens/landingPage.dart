@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hacktkm_frontend/helpers/custom_colors.dart';
 import 'package:hacktkm_frontend/screens/farmer/FarmerHomeScreen.dart';
-import 'package:hacktkm_frontend/screens/farmer/farmerRentals.dart';
+import 'package:hacktkm_frontend/screens/farmer/rentals/farmerRentals.dart';
 
 
 

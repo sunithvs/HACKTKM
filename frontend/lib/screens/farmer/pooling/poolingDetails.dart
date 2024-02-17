@@ -5,8 +5,8 @@ import 'package:hacktkm_frontend/helpers/custom_colors.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-import '../../models/poolingModel.dart';
-import '../../models/rentalModel.dart';
+import '../../../models/poolingModel.dart';
+
 
 class PoolingDetails extends StatelessWidget {
   const PoolingDetails(this.pooling,{super.key});

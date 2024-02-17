@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hacktkm_frontend/helpers/custom_colors.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-import '../../models/rentalModel.dart';
+import '../../../models/rentalModel.dart';
 
 class RentalDetails extends StatelessWidget {
   const RentalDetails(this.rental,{super.key});
