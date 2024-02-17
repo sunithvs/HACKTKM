@@ -20,7 +20,7 @@ CSRF_TRUSTED_ORIGINS = [
 
 # CORS settings
 CORS_ORIGIN_WHITELIST = [
-     'https://farmer.radr.in,
+    'https://farmer.radr.in',
 ]
 CORS_ORIGIN_ALLOW_ALL = False
 
