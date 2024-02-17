@@ -1,7 +1,7 @@
-from auth_login.models import User
-from auth_login.serializers import UserSerializer
 from rest_framework import serializers
 
+from auth_login.models import User
+from auth_login.serializers import UserSerializer
 from .models import PoolingRequest, UserContribution
 
 
@@ -39,9 +39,10 @@ class PoolingRequestSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         # Convert the location to a dictionary with 'lat', 'long', and 'srid' fields
         representation = super().to_representation(instance)
+
         representation['location'] = {
-            'lat': instance.location.y,
-            'long': instance.location.x,
-            'srid': instance.location.srid
+            'lat': instance.location.y if instance.location else 0,
+            'long': instance.location.x if instance.location else 0,
+            'srid': instance.location.srid if instance.location else 0
         }
         return representation
