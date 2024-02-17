@@ -16,20 +16,22 @@ class RentalItemSerializer(serializers.ModelSerializer):
 
     category = CategorySerializer(read_only=True)
     stock_available = serializers.SerializerMethodField(read_only=True)
+    location_lat = serializers.FloatField(source='location.y', write_only=True)
+    location_long = serializers.FloatField(source='location.x', write_only=True)
 
 
     class Meta:
         model = RentalItem
-        fields = ['id', 'name', 'description', 'available_quantity', 'rental_price_per_day', 'category', 'location',
-                  'stock_available', 'category_name', 'image']
+        fields = ['id', 'name', 'description', 'available_quantity', 'rental_price_per_day', 'category',
+                  'stock_available', 'category_name', 'image', 'location_lat', 'location_long']
 
     def get_stock_available(self, obj):
         return obj.available_quantity > 0
 
-    def validate_location(self, value):
+    def validate_location_data(self, lat, long, srid=4326):
         # Validate and convert the input location to a GEOSGeometry object
         try:
-            location = Point(value['long'], value['lat'], srid=value.get("srid", 4326))
+            location = Point(long, lat, srid=srid)
         except (ValueError, TypeError, KeyError):
             raise serializers.ValidationError("Invalid location format. Please provide 'lat', 'long', and 'srid'.")
 
@@ -50,26 +52,22 @@ class RentalItemSerializer(serializers.ModelSerializer):
         # If a new category is created, save it
         if created:
             category.save()
-
+        print("category is ", category)
         return category
 
     def create(self, validated_data):
         # Extract the category_name from the validated data
         category_name = validated_data.pop('category_name', None)
-        location_data = validated_data.pop('location', None)
+        location_data_lat = validated_data.pop('location_lat', None)
+        location_data_long = validated_data.pop('location_long', None)
 
-        if location_data:
-            validated_data['location'] = self.validate_location(location_data)
+        if location_data_lat and location_data_long:
+            validated_data['location'] = self.validate_location_data(location_data_lat, location_data_long)
+        else:
+            validated_data['location'] = Point(0, 0, srid=4326)
 
-
-        # Create the RentalItem instance without the category_name
+        validated_data['category'] = validated_data['category']['name']
         rental_item = RentalItem.objects.create(**validated_data)
-
-        # If category_name is provided, set it for the RentalItem
-        if category_name:
-            rental_item.category = category_name
-
-        rental_item.save()
 
         return rental_item
 
