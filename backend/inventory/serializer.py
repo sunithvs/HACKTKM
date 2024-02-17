@@ -29,5 +29,20 @@ class ProductSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError("No users available in the database.")
 
         # Create the product with the associated farmer
+        validated_data['category'] = validated_data['category']['name']
         product = Product.objects.create(farmer=farmer, **validated_data)
+
         return product
+
+    def validate_category_name(self, value):
+        # Strip and lowercase the category name
+        stripped_lowered_value = value.strip().lower()
+
+        # Get existing category or create a new one
+        category, created = Category.objects.get_or_create(name=stripped_lowered_value)
+
+        # If a new category is created, save it
+        if created:
+            category.save()
+        print("category is ", category)
+        return category
