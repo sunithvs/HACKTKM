@@ -15,7 +15,7 @@ ALLOWED_HOSTS = [
 
 # CSRF settings
 CSRF_TRUSTED_ORIGINS = [
-    'https://farmer.radr.in,
+    'https://farmer.radr.in',
 ]
 
 # CORS settings
