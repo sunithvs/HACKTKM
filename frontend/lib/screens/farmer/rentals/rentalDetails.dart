@@ -63,10 +63,6 @@ class RentalDetails extends StatelessWidget {
           Center(
             child: ElevatedButton(
               onPressed: () {},
-              child: Text(
-                '\$ Rent Now',
-                style: GoogleFonts.dmSans(fontWeight: FontWeight.w600),
-              ),
               style: ElevatedButton.styleFrom(
                   backgroundColor: CustomColors.primaryColor,
                   foregroundColor: Colors.black87,
@@ -77,6 +73,10 @@ class RentalDetails extends StatelessWidget {
                       vertical: size.height * .015),
                   textStyle: GoogleFonts.dmSans(
                       fontWeight: FontWeight.w700, fontSize: size.width * .05)),
+              child: Text(
+                '\$ Rent Now',
+                style: GoogleFonts.dmSans(fontWeight: FontWeight.w600),
+              ),
             ),
           ),
           SizedBox(

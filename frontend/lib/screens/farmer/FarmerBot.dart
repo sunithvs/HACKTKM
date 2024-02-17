@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sound/flutter_sound.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:lottie/lottie.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
@@ -21,12 +22,19 @@ class FarmerBot extends StatefulWidget {
 
 class _FarmerBotState extends State<FarmerBot> {
    bool isRecording = false;
+   bool isLoading = false;
    final recorder = FlutterSoundRecorder();
    @override
   void initState() {
     // TODO: implement initState
      initRecorder();
     super.initState();
+  }
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    
+    super.dispose();
   }
 
 
@@ -66,8 +74,13 @@ class _FarmerBotState extends State<FarmerBot> {
            final audioFile = File(path!);
             setState(() {
               isRecording = false;
+              isLoading = true;
             });
+
             await provider.sendMessage(audioFile);
+            setState(() {
+              isLoading = false;
+            });
           }else{
             await recorder.startRecorder(toFile: "audio");
             setState(() {
@@ -84,7 +97,12 @@ class _FarmerBotState extends State<FarmerBot> {
         child:  isRecording?Icon(Ionicons.stop_circle,color: Colors.red,):Icon(Ionicons.mic,size: size.width*.1),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      body: const MessagesList(),
+      body: isLoading?Center(
+        child: SizedBox(
+          width: size.width,
+
+            child: Lottie.asset("assets/images/animation.json",fit: BoxFit.fitWidth)),
+      ): MessagesList(),
     );
   }
   Future<void> initRecorder() async {

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hacktkm_frontend/helpers/custom_colors.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../../models/poolingModel.dart';
@@ -86,7 +87,9 @@ class PoolingDetails extends StatelessWidget {
           ),
           SizedBox(height: size.height*.02,),
           Center(
-            child: ElevatedButton(onPressed: (){},style: ElevatedButton.styleFrom(
+            child: ElevatedButton(onPressed: (){
+
+            },style: ElevatedButton.styleFrom(
                 backgroundColor: CustomColors.primaryColor,
                 foregroundColor: Colors.black87,
                 shape: RoundedRectangleBorder(
@@ -102,5 +105,15 @@ class PoolingDetails extends StatelessWidget {
         ],
       ),
     );
+  }
+  void handlePaymentSuccessResponse(PaymentSuccessResponse response) {
+    /*
+    * Payment Success Response contains three values:
+    * 1. Order ID
+    * 2. Payment ID
+    * 3. Signature
+    * */
+    print(response.data.toString());
+
   }
 }

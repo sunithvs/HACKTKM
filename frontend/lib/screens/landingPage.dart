@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hacktkm_frontend/helpers/custom_colors.dart';
 import 'package:hacktkm_frontend/screens/farmer/FarmerHomeScreen.dart';
 import 'package:hacktkm_frontend/screens/farmer/rentals/farmerRentals.dart';
+import 'package:hacktkm_frontend/screens/restaurant/productListing.dart';
 
 
 
@@ -116,8 +117,8 @@ class LandingPage extends StatelessWidget {
                       final prefs = await SharedPreferences.getInstance();
                       prefs.setBool("isFarmer", false);
 
-                      // Navigator.push(
-                      //     context, SlidePageRoute(page: LoginPage()));
+                      Navigator.pushReplacement(
+                          context, SlidePageRoute(page: const ProductListing()));
                     },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white,

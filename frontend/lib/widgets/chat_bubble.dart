@@ -47,7 +47,7 @@ class ChatBubble extends StatelessWidget {
             controller: VoiceController(
               audioSrc:
               message.path,
-              maxDuration: const Duration(seconds: 10),
+              maxDuration: const Duration(seconds: 15),
               isFile: false,
               onComplete: () {
                 /// do something on complete

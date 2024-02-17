@@ -5,11 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hacktkm_frontend/screens/farmer/FarmerBot.dart';
 import 'package:hacktkm_frontend/screens/farmer/pooling/farmerPooling.dart';
+import 'package:hacktkm_frontend/screens/farmer/marketPlace.dart';
 import 'package:hacktkm_frontend/screens/farmer/rentals/farmerRentals.dart';
 
 import 'package:ionicons/ionicons.dart';
 import '../../helpers/custom_colors.dart';
-import 'farmerProfile.dart';
+
 
 
 class FarmerHomeScreen extends StatefulWidget {
@@ -25,7 +26,7 @@ class _FarmerHomeScreenState extends State<FarmerHomeScreen> {
   List<Widget> screen = [
     const FarmerRentals(),
     const FarmerPooling(),
-    const FarmerProfile(),
+    const MarketPlace(),
      FarmerBot()
 
   ];
