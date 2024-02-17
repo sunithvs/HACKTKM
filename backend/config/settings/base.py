@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
 ]
 
 # Third-party apps
@@ -63,11 +64,13 @@ THIRD_PARTY_APPS = [
     'drf_yasg',
     'ckeditor',
     'rest_framework_simplejwt',
+    'django.contrib.gis',
+    'django_filters'
 ]
 
 # Custom apps
 CUSTOM_APPS = [
-    'auth_login', 'base'
+    'auth_login', 'base', 'farmers'
 ]
 
 INSTALLED_APPS += CUSTOM_APPS + THIRD_PARTY_APPS
@@ -77,7 +80,7 @@ APPLICATION_NAME = 'Farmer'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': env.str('POSTGRES_DB'),
         'USER': env.str('POSTGRES_USER'),
         'PASSWORD': env.str('POSTGRES_PASSWORD'),

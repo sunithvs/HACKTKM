@@ -16,7 +16,7 @@ services:
       - nginx_network
 
   db:
-    image: postgres
+    image: postgis/postgis:13-3.1
     env_file:
       - .env
     volumes:

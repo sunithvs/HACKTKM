@@ -31,10 +31,10 @@ ALLOWED_HOSTS += ["*"]
 
 # Additional trusted CSRF origins
 CSRF_TRUSTED_ORIGINS += [
-    "http://localhost:8000",
+    "http://localhost:7000",
 ]
 
 # Additional CORS origins whitelist
 CORS_ORIGIN_WHITELIST += [
-    "http://localhost:8000",
+    "http://localhost:7000",
 ]

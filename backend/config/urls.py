@@ -45,6 +45,9 @@ urlpatterns = [
         "auth/",
         include("auth_login.urls")),
     path(
+        "farmer/",
+        include("farmers.urls")),
+    path(
         settings.ADMIN_URL,
         admin.site.urls),
     re_path(

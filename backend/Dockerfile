@@ -12,6 +12,12 @@ COPY requirements.txt /code/
 # Copy the project code into the container
 COPY . /code/
 
+# Install GDAL dependencies
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        gdal-bin \
+        libgdal-dev \
+        && rm -rf /var/lib/apt/lists/*
 
 RUN pip install --upgrade pip
 
