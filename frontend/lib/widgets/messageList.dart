@@ -20,6 +20,7 @@ class MessagesList extends StatelessWidget {
             vertical: mediaQuery.height * .01),
         itemCount: messages.length,
         itemBuilder: (ctx, index) {
+          print(messages.length);
           final message = Message(
             role: messages[index].role, path: messages[index].path,
 

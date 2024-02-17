@@ -26,7 +26,7 @@ class _FarmerHomeScreenState extends State<FarmerHomeScreen> {
     const FarmerRentals(),
     const FarmerPooling(),
     const FarmerProfile(),
-    const FarmerBot()
+     FarmerBot()
 
   ];
 

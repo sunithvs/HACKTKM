@@ -41,10 +41,12 @@ class ChatBubble extends StatelessWidget {
               )),
           child: VoiceMessageView(
 
-            size:30,
+
+            size:40,
+
             controller: VoiceController(
               audioSrc:
-              'https://commondatastorage.googleapis.com/codeskulptor-demos/pyman_assets/intromusic.ogg',
+              message.path,
               maxDuration: const Duration(seconds: 10),
               isFile: false,
               onComplete: () {
@@ -62,6 +64,8 @@ class ChatBubble extends StatelessWidget {
             ),
             innerPadding: 12,
             cornerRadius: 20,
+            circlesColor: CustomColors.primaryColor,
+            activeSliderColor: CustomColors.primaryColor,
           ),
         ),
       ],

@@ -49,11 +49,11 @@ class LandingPage extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: size.width * .1),
               child: Text(
-                'Elevating talent, \nSimplifying hiring',
+                'A small step for farmers, \nA giant leap for mankind',
                 textAlign: TextAlign.center,
                 style: GoogleFonts.montserrat(
                     fontSize: size.width * .065,
-                    color: Theme.of(context).primaryColor,
+                    color: CustomColors.primaryColor,
                     fontWeight: FontWeight.bold),
               ),
             ),
