@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hacktkm_frontend/screens/farmer/farmerPooling.dart';
 import 'package:hacktkm_frontend/screens/farmer/farmerRentals.dart';
 
 import 'package:ionicons/ionicons.dart';
@@ -21,6 +22,7 @@ class _FarmerHomeScreenState extends State<FarmerHomeScreen> {
 
   List<Widget> screen = [
     const FarmerRentals(),
+    const FarmerPooling()
 
   ];
 
@@ -50,7 +52,7 @@ class _FarmerHomeScreenState extends State<FarmerHomeScreen> {
               label: " "),
           BottomNavigationBarItem(
               icon: Icon(
-                index == 1 ? Ionicons.search_sharp : Ionicons.search_outline,
+                index == 1 ? Ionicons.people_circle_sharp : Ionicons.people_circle_outline,
               ),
               label: " "),
 
