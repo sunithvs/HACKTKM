@@ -51,6 +51,9 @@ urlpatterns = [
         "pooling/",
         include("pooling.urls")),
     path(
+        "inventory/",
+        include("inventory.urls")),
+    path(
         "voice/",
         include("voicebot.urls")),
     path(
