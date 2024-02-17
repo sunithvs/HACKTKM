@@ -21,4 +21,4 @@ class Product(models.Model):
     image = models.ImageField(upload_to="products", blank=True, null=True)
 
     def __str__(self):
-        return f"{self.farmer.username} - {self.name} - {self.quantity} units"
+        return f"{self.farmer.full_name} - {self.name} - {self.quantity} units"
