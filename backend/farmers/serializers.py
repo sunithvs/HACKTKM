@@ -1,3 +1,4 @@
+from django.contrib.gis.geos import Point
 from django.utils import timezone
 from rest_framework import serializers
 
@@ -11,18 +12,28 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class RentalItemSerializer(serializers.ModelSerializer):
-    category_name = serializers.CharField(write_only=True, source='category.name')
+    category_name = serializers.CharField(source='category.name')
 
     category = CategorySerializer(read_only=True)
     stock_available = serializers.SerializerMethodField(read_only=True)
 
+
     class Meta:
         model = RentalItem
         fields = ['id', 'name', 'description', 'available_quantity', 'rental_price_per_day', 'category', 'location',
-                  'stock_available', 'category_name']
+                  'stock_available', 'category_name', 'image']
 
     def get_stock_available(self, obj):
         return obj.available_quantity > 0
+
+    def validate_location(self, value):
+        # Validate and convert the input location to a GEOSGeometry object
+        try:
+            location = Point(value['long'], value['lat'], srid=value.get("srid", 4326))
+        except (ValueError, TypeError, KeyError):
+            raise serializers.ValidationError("Invalid location format. Please provide 'lat', 'long', and 'srid'.")
+
+        return location
 
     def validate_rental_price_per_day(self, value):
         if value <= 0:
@@ -45,6 +56,11 @@ class RentalItemSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         # Extract the category_name from the validated data
         category_name = validated_data.pop('category_name', None)
+        location_data = validated_data.pop('location', None)
+
+        if location_data:
+            validated_data['location'] = self.validate_location(location_data)
+
 
         # Create the RentalItem instance without the category_name
         rental_item = RentalItem.objects.create(**validated_data)
@@ -56,6 +72,16 @@ class RentalItemSerializer(serializers.ModelSerializer):
         rental_item.save()
 
         return rental_item
+
+    def to_representation(self, instance):
+        # Convert the location to a dictionary with 'lat', 'long', and 'srid' fields
+        representation = super().to_representation(instance)
+        representation['location'] = {
+            'lat': instance.location.y,
+            'long': instance.location.x,
+            'srid': instance.location.srid
+        }
+        return representation
 
 
 class RentalServiceSerializer(serializers.ModelSerializer):
