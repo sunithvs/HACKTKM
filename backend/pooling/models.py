@@ -26,11 +26,6 @@ class PoolingRequest(models.Model):
         # Calculate the remaining amount to be pooled to meet the total requested amount
         return max(0, self.total_amount_requested - self.total_amount_received)
 
-    def save(self, *args, **kwargs):
-        # Update is_fulfilled based on the current and total amounts
-        self.is_fulfilled = self.total_amount_received >= self.total_amount_requested
-        super().save(*args, **kwargs)
-
 
 class UserContribution(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
