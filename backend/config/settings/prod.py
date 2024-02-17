@@ -10,17 +10,17 @@ DEBUG = False
 
 # Allowed hosts
 ALLOWED_HOSTS = [
-    'ride.sunithvs.com',
+    'farmer.radr.in'
 ]
 
 # CSRF settings
 CSRF_TRUSTED_ORIGINS = [
-    'https://ride.sunithvs.com',
+    'https://farmer.radr.in,
 ]
 
 # CORS settings
 CORS_ORIGIN_WHITELIST = [
-    'https://farmer.sunithvs.com',
+     'https://farmer.radr.in,
 ]
 CORS_ORIGIN_ALLOW_ALL = False
 
