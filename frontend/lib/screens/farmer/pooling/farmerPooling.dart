@@ -30,7 +30,9 @@ class _FarmerPoolingState extends State<FarmerPooling> {
         backgroundColor: CustomColors.primaryColor,
         title:  Text('Pool Equipment',style: GoogleFonts.dmSans(fontWeight: FontWeight.w600,color: Colors.black87),),
         actions: [
-          IconButton(onPressed: (){}, icon: Icon(Icons.add))
+          IconButton(onPressed: (){
+            Navigator.of(context).pushNamed('/addPooling');
+          }, icon: Icon(Icons.add))
         ],
       ),
       body:  poolings.isEmpty?

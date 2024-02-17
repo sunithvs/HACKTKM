@@ -2,12 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hacktkm_frontend/helpers/custom_route_animations.dart';
 import 'package:hacktkm_frontend/models/poolingModel.dart';
-
-import 'package:hacktkm_frontend/screens/farmer/rentals/rentalDetails.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import '../helpers/custom_colors.dart';
-import '../models/rentalModel.dart';
 import '../screens/farmer/pooling/poolingDetails.dart';
 
 class PoolingCard extends StatelessWidget {

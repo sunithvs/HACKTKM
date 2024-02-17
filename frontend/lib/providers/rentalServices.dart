@@ -107,15 +107,37 @@ class RentalProvider extends ChangeNotifier {
 
     notifyListeners();
   }
-  Future<void> addPoolingItem(String name, String description, double totalAmount, double lat, double long) async {
+
+  Future<void> addPoolingItem(
+      {required String name,
+        required String description,
+
+        required double price,
+        required File image,
+        required double lat,
+        required double long}) async {
     final url = Uri.parse("$baseUrl/pooling/pooling-items/");
-    final response = await http.post(url, body: {
+    final request = http.MultipartRequest('POST', url);
+    final data = {
       "name": name,
       "service_description": description,
-      "total_amount_requested": totalAmount.toString(),
-      "location": json.encode({"lat": lat, "long": long})
-    });
-    print(response.body);
-    fetchPoolings();
+
+      "region":"kilikolloor",
+      "total_amount_requested": price.toString(),
+      "location_lat": lat.toString(),
+      "location_long": long.toString()
+    };
+    request.fields.addAll(data);
+    final bytes = await image.readAsBytes();
+    request.files.add(http.MultipartFile.fromBytes("image", bytes,
+        filename: image.path.split("/").last));
+    var response = await request.send();
+
+    final value = await response.stream.bytesToString();
+    final responseData = jsonDecode(value);
+
   }
+
+
+
 }
