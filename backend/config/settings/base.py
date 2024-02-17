@@ -70,7 +70,7 @@ THIRD_PARTY_APPS = [
 
 # Custom apps
 CUSTOM_APPS = [
-    'auth_login', 'base', 'farmers'
+    'auth_login', 'base', 'farmers', 'pooling'
 ]
 
 INSTALLED_APPS += CUSTOM_APPS + THIRD_PARTY_APPS

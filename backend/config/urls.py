@@ -48,6 +48,9 @@ urlpatterns = [
         "farmer/",
         include("farmers.urls")),
     path(
+        "pooling/",
+        include("pooling.urls")),
+    path(
         settings.ADMIN_URL,
         admin.site.urls),
     re_path(
