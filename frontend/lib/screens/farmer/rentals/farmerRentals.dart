@@ -24,15 +24,27 @@ class _FarmerRentalsState extends State<FarmerRentals> {
     final rentals = provider.rentals;
     final size = MediaQuery.of(context).size;
     return Scaffold(
+      extendBodyBehindAppBar: true,
+
+
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: CustomColors.primaryColor,
-        title:  Text('Rent Equipments',style: GoogleFonts.dmSans(fontWeight: FontWeight.w600,color: Colors.black87),),
+        elevation: 0,
+        flexibleSpace: Image.asset('assets/images/img_1.png',fit: BoxFit.cover,width: size.width,),
+
+
+        
+        toolbarHeight: size.height*.15,
+        backgroundColor: CustomColors.primaryColor.withOpacity(0),
+        title:  Text('Rental',style: GoogleFonts.dmSans(fontWeight: FontWeight.w600,color: Colors.black87,fontSize: size.width*.06),),
         actions: [
-          IconButton(onPressed: (){
+          ElevatedButton.icon(onPressed: (){
             Navigator.of(context).pushNamed('/addRental');
-          }, icon: Icon(Icons.add))
+          }, label: Text('Add Rental',style: GoogleFonts.dmSans(fontWeight: FontWeight.w500,color: Colors.black87,fontSize: size.width*.04),),
+              icon: Icon(Icons.add)),
+          SizedBox(width: size.width*.02,)
         ],
+
       ),
       body:
 
@@ -40,8 +52,13 @@ class _FarmerRentalsState extends State<FarmerRentals> {
               Center(child: Text('No Rentals Found',style: GoogleFonts.dmSans(fontWeight: FontWeight.w600,fontSize: size.width*.05),),)
           :
            ListView.builder(itemBuilder: (context,index){
-            return  RentalCard(rentals[index]);
-          },
+            return  Column(
+              children: [
+                RentalCard(rentals[index]),
+                Divider(endIndent: size.width*.1,indent: size.width*.1,color: Colors.black12,)
+              ],
+            );
+                     },
               itemCount: rentals.length,)
 
     );

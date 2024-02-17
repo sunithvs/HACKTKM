@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hacktkm_frontend/screens/farmer/FarmerBot.dart';
 import 'package:hacktkm_frontend/screens/farmer/pooling/farmerPooling.dart';
 import 'package:hacktkm_frontend/screens/farmer/rentals/farmerRentals.dart';
 
@@ -25,6 +26,7 @@ class _FarmerHomeScreenState extends State<FarmerHomeScreen> {
     const FarmerRentals(),
     const FarmerPooling(),
     const FarmerProfile(),
+    const FarmerBot()
 
   ];
 
@@ -33,6 +35,7 @@ class _FarmerHomeScreenState extends State<FarmerHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       body: screen[index],
       bottomNavigationBar: BottomNavigationBar(
@@ -40,31 +43,38 @@ class _FarmerHomeScreenState extends State<FarmerHomeScreen> {
         selectedIconTheme: IconThemeData(color: CustomColors.primaryColor),
         elevation: 10,
         currentIndex: index,
-        selectedFontSize: 0,
-        unselectedFontSize: 0,
+        showUnselectedLabels: true,
+        selectedFontSize: size.width*.04,
+        unselectedFontSize: size.width*.035,
         type: BottomNavigationBarType.shifting,
+        selectedLabelStyle: GoogleFonts.dmSans(color: Colors.black),
+        unselectedLabelStyle: GoogleFonts.dmSans(color: Colors.black),
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.black,
         onTap: (val) {
           setState(() => index = val);
         },
-        items: [
+        items:  [
           BottomNavigationBarItem(
               icon: Icon(
-                index == 0 ? Ionicons.home_sharp : Ionicons.home_outline,
+               Ionicons.home_outline,
               ),
-              label: " "),
-          BottomNavigationBarItem(
-              icon: Icon(
-                index == 1 ? Ionicons.people_circle_sharp : Ionicons.people_circle_outline,
-              ),
-              label: " "),
 
-          const BottomNavigationBarItem(
-              icon: Icon(Ionicons.person_circle_outline), label: " "),
-          const BottomNavigationBarItem(
+
+              label: "Rent"),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Ionicons.cube_outline
+              ),
+              label: "Pool"),
+
+          BottomNavigationBarItem(
+              icon: Icon(Ionicons.cart_outline), label: "Sell"),
+          BottomNavigationBarItem(
               icon: Icon(
                 Ionicons.chatbox_ellipses_outline,
               ),
-              label: " ")
+              label: "Chat")
         ],
       ),
     );

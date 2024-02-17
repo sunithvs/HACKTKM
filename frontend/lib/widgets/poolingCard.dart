@@ -24,7 +24,7 @@ class PoolingCard extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.symmetric(
             vertical: size.width * .03, horizontal: size.width * .03),
-        height: size.height * .175,
+        height: size.height * .2,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -32,8 +32,8 @@ class PoolingCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               child: Image.network(
                 pooling.imageUrl,
-                height: size.height * .175,
-                width: size.width * .25,
+                height: size.width * .3,
+                width: size.width * .3,
                 fit: BoxFit.cover,
               ),
             ),
@@ -41,16 +41,19 @@ class PoolingCard extends StatelessWidget {
               width: size.width * .03,
             ),
             SizedBox(
-              height: size.height * .175,
-              width: size.width * .6,
+              width: size.width * .03,
+            ),
+            SizedBox(
+              height: size.height * .2,
+              width: size.width * .5,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     pooling.name,
                     style: GoogleFonts.dmSans(
-                        fontWeight: FontWeight.w700,
-                        fontSize: size.width * .06),
+                        fontWeight: FontWeight.w600,
+                        fontSize: size.width * .05),
                   ),
                   //
 
@@ -66,20 +69,41 @@ class PoolingCard extends StatelessWidget {
                   ),
 
                   LinearPercentIndicator(
-                    width: size.width * .6,
+                    width: size.width * .5,
                     lineHeight: size.height * .04,
                     animation: true,
                     barRadius: Radius.circular(20),
+                   //fillColor: Color(0xffE8E8E8),
+                    linearGradient: LinearGradient(
+                      colors: [
+                        CustomColors.primaryColor,
+                        Color(0xff38E4E0)
+                      ],
+                    ),
+                    backgroundColor: Color(0xffE8E8E8),
                     percent:
                         pooling.total_amount_received / pooling.total_amount,
-                    progressColor: CustomColors.primaryColor,
+                    //progressColor: CustomColors.primaryColor,
                     center: Text(
                       "\$${pooling.total_amount_received}/\$${pooling.total_amount}",
                       style: GoogleFonts.dmSans(
                           fontWeight: FontWeight.w600,
                           fontSize: size.width * .04),
                     ),
+                  ),
+                  SizedBox(height: size.height*.02,),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Container(
+
+                        padding: EdgeInsets.symmetric(horizontal: size.width*.03,vertical: size.height*.01),
+                        decoration: BoxDecoration(
+                            color: CustomColors.primaryColor,
+                            borderRadius: BorderRadius.circular(20)
+                        ),
+                        child: Text("\$ ${pooling.total_amount.toString()}",style: GoogleFonts.dmSans(fontWeight: FontWeight.w500,fontSize: size.width*.04),)),
                   )
+
                 ],
               ),
             ),

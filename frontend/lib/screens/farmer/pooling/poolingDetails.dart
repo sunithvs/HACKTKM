@@ -31,23 +31,35 @@ class PoolingDetails extends StatelessWidget {
           SizedBox(height: size.height*.02,),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: size.width*.05),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-
-                Text(pooling.name,style: GoogleFonts.dmSans(fontWeight: FontWeight.w700,fontSize: size.width*.05),),
-                LinearPercentIndicator(
-                  width: size.width*.5,
-                  lineHeight: size.height*.04,
-                  animation: true,
-                  barRadius: Radius.circular(20),
-                  percent: pooling.total_amount_received/pooling.total_amount,
-                  progressColor: CustomColors.primaryColor,
-                  center: Text("\$${pooling.total_amount_received}/\$${pooling.total_amount}",style: GoogleFonts.dmSans(fontWeight: FontWeight.w600,fontSize: size.width*.04),),
-                ) ],
-            ),
+            child: Text(pooling.name,style: GoogleFonts.dmSans(fontWeight: FontWeight.w700,fontSize: size.width*.05),),
           ),
-          SizedBox(height: size.height*.01,),
+          SizedBox(height: size.height*.02,),
+          Align(
+            alignment: Alignment.centerRight,
+            child: LinearPercentIndicator(
+              width: size.width * .9,
+              lineHeight: size.height * .04,
+              animation: true,
+              barRadius: Radius.circular(20),
+              //fillColor: Color(0xffE8E8E8),
+              linearGradient: LinearGradient(
+                colors: [
+                  CustomColors.primaryColor,
+                  Color(0xff38E4E0)
+                ],
+              ),
+              backgroundColor: Color(0xffE8E8E8),
+              percent:
+              pooling.total_amount_received / pooling.total_amount,
+              //progressColor: CustomColors.primaryColor,
+              center: Text(
+                "\$${pooling.total_amount_received}/\$${pooling.total_amount}",
+                style: GoogleFonts.dmSans(
+                    fontWeight: FontWeight.w600,
+                    fontSize: size.width * .04),
+              ),),
+          ),
+          SizedBox(height: size.height*.03,),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: size.width*.05),
             child: Text(pooling.description,style: GoogleFonts.dmSans(fontWeight: FontWeight.w500,fontSize: size.width*.05),),

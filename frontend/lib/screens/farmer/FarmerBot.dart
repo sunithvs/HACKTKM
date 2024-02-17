@@ -11,7 +11,7 @@ class FarmerBot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mediaQuery = MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
     final provider = Provider.of<ChatProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
@@ -34,37 +34,19 @@ class FarmerBot extends StatelessWidget {
               fontWeight: FontWeight.bold, color: Colors.white, fontSize: 22),
         ),
       ),
-      body: Column(
-        children: [
-          const Expanded(child: MessagesList()),
-          Container(
+      floatingActionButton: FloatingActionButton.large(
 
-            height: mediaQuery.height * .1,
-            padding: EdgeInsets.symmetric(horizontal: mediaQuery.width * .01),
-            child: Row(
-              children: [
-                SizedBox(
-                  width: mediaQuery.width * .8,
-                  child: SizedBox()
-                ),
-                ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.only(
-                            left: 20, right: 15, bottom: 15, top: 15),
-                        backgroundColor: CustomColors.primaryColor,
-                        shape: const CircleBorder()),
-                    onPressed: () {
+        highlightElevation: 10,
 
-                    },
-                    child: const Icon(
-                      Ionicons.send_sharp,
-                      color: Colors.white,
-                    ))
-              ],
-            ),
-          )
-        ],
+        onPressed: () {
+
+        },
+        shape: CircleBorder(),
+        child:  Icon(Ionicons.mic,size: size.width*.1),
+        backgroundColor: CustomColors.primaryColor,
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      body: MessagesList(),
     );
   }
 }

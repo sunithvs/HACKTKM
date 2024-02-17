@@ -112,7 +112,7 @@ XFile? image;
             key: _key,
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: mediaQuery.width * .05),
-              height: mediaQuery.height * .3,
+
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -131,19 +131,19 @@ XFile? image;
                       decoration: InputDecoration(
                           contentPadding:
                               const EdgeInsets.symmetric(vertical: 15),
-                          prefixIcon: Icon(
-                            Icons.attractions,
-                            color: CustomColors.primaryColor,
-                          ),
+                          prefixIcon: SizedBox(width: mediaQuery.width*.1,),
+
                           hintText: "Name",
                           hintStyle: GoogleFonts.nunitoSans(
                               fontWeight: FontWeight.w600,
                               color: Colors.black38),
-                          fillColor: Colors.black12,
-                          filled: true,
+
                           border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
-                              borderSide: BorderSide.none)),
+                              borderRadius: BorderRadius.circular(25),
+                              borderSide: BorderSide(color: Colors.black12,width: 1))),
+                    ),
+                    SizedBox(
+                      height: mediaQuery.height * .03,
                     ),
                     TextFormField(
                       controller: _descriptionController,
@@ -160,20 +160,20 @@ XFile? image;
                       keyboardType: TextInputType.multiline,
                       decoration: InputDecoration(
                           contentPadding:
-                              const EdgeInsets.symmetric(vertical: 15),
-                          prefixIcon: Icon(
-                            Ionicons.accessibility_outline,
-                            color: CustomColors.primaryColor,
-                          ),
+                               EdgeInsets.symmetric(vertical: mediaQuery.height*.1),
+                          prefixIcon: SizedBox(width: mediaQuery.width*.1,),
+
                           hintText: "Product Description",
                           hintStyle: GoogleFonts.nunitoSans(
                               fontWeight: FontWeight.w600,
                               color: Colors.black38),
-                          fillColor: Colors.black12,
-                          filled: true,
+
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30),
-                              borderSide: BorderSide.none)),
+                              borderSide: BorderSide(color: Colors.black12,width: 1))),
+                    ),
+                    SizedBox(
+                      height: mediaQuery.height * .03,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -198,22 +198,18 @@ XFile? image;
                             decoration: InputDecoration(
                                 contentPadding:
                                     const EdgeInsets.symmetric(vertical: 15),
-                                prefixIcon: Icon(
-                                  Icons.attach_money,
-                                  color: CustomColors.primaryColor,
-                                ),
+                                prefixIcon: SizedBox(width: mediaQuery.width*.05,),
                                 hintText: "Price",
                                 hintStyle: GoogleFonts.nunitoSans(
                                     fontWeight: FontWeight.w600,
                                     color: Colors.black38),
-                                fillColor: Colors.black12,
-                                filled: true,
+
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(30),
-                                    borderSide: BorderSide.none)),
+                                    borderSide: BorderSide(color: Colors.black12,width: 1)  )),
                           ),
                         ),
-              Text("Quantity",style: GoogleFonts.nunitoSans(fontWeight: FontWeight.w600,fontSize: mediaQuery.width*.05),),
+              Text("Quantity",style: GoogleFonts.nunitoSans(fontWeight: FontWeight.w500,fontSize: mediaQuery.width*.045),),
               DropdownButton<String>(
 
                 value: dropdownValue,
@@ -287,16 +283,20 @@ XFile? image;
               style: ElevatedButton.styleFrom(
                   backgroundColor: CustomColors.primaryColor,
                   padding: EdgeInsets.symmetric(
-                      horizontal: mediaQuery.width * .1,
+                      horizontal: mediaQuery.width * .25,
                       vertical: mediaQuery.height * .015),
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10))),
-              child: Text("Add Rent Item",
+                      borderRadius: BorderRadius.circular(300))),
+                child: Text("RENT OUT",
                   style: GoogleFonts.poppins(
                       fontSize: mediaQuery.width * .04,
                       color: Colors.black,
-                      fontWeight: FontWeight.w600)),
+                      fontWeight: FontWeight.w500)),
             ),
+
+          ),
+          SizedBox(
+            height: mediaQuery.height * .03,
           ),
         ],
       ),

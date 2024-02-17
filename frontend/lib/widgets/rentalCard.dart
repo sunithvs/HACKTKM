@@ -18,18 +18,19 @@ class RentalCard extends StatelessWidget {
         Navigator.of(context).push(SlidePageRoute(page: RentalDetails(rental),));
       },
       child: Container(
-        margin: EdgeInsets.symmetric(vertical:size.width*.03,horizontal: size.width*.03),
-        height: size.height * .175,
+
+        margin: EdgeInsets.symmetric(vertical:size.width*.01,horizontal: size.width*.04),
+        height: size.height * .17,
 
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Image.network(
                 rental.imageUrl,
-                height: size.height * .175,
-                width: size.width * .25,
+                height: size.width * .3,
+                width: size.width * .3,
                 fit: BoxFit.cover,
               ),
             ),
@@ -37,24 +38,24 @@ class RentalCard extends StatelessWidget {
               width: size.width * .03,
             ),
             SizedBox(
-              height: size.height * .175,
-              width: size.width * .6,
+              height: size.height * .155,
+              width: size.width * .5,
               child: Column(
 
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(rental.name,style: GoogleFonts.dmSans(fontWeight: FontWeight.w700,fontSize: size.width*.06),),
+                  Text(rental.name,style: GoogleFonts.dmSans(fontWeight: FontWeight.w700,fontSize: size.width*.05),),
                   //SizedBox(height: size.height*.01,),
 
-                  Expanded(child: Text(rental.description,style: GoogleFonts.dmSans(fontWeight: FontWeight.w500,fontSize: size.width*.0425),overflow: TextOverflow.clip,)),
+                  Text(rental.description,style: GoogleFonts.dmSans(fontWeight: FontWeight.w500,fontSize: size.width*.035),overflow: TextOverflow.clip,),
                   SizedBox(height: size.height*.02,),
                   Container(
                       padding: EdgeInsets.symmetric(horizontal: size.width*.03,vertical: size.height*.01),
                       decoration: BoxDecoration(
                           color: CustomColors.primaryColor,
-                          borderRadius: BorderRadius.circular(10)
+                          borderRadius: BorderRadius.circular(20)
                       ),
-                      child: Text("\$${rental.price.toString()}",style: GoogleFonts.dmSans(fontWeight: FontWeight.w700,fontSize: size.width*.05),))
+                      child: Text("\$ ${rental.price.toString()}",style: GoogleFonts.dmSans(fontWeight: FontWeight.w500,fontSize: size.width*.04),))
                 ],
               ),
             ),

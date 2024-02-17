@@ -27,19 +27,32 @@ class _FarmerPoolingState extends State<FarmerPooling> {
     final poolings = provider.poolings;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: CustomColors.primaryColor,
+        elevation: 0,
+        flexibleSpace: Image.asset('assets/images/img_1.png',fit: BoxFit.cover,width: size.width,),
+
+
+
+        toolbarHeight: size.height*.15,
         title:  Text('Pool Equipment',style: GoogleFonts.dmSans(fontWeight: FontWeight.w600,color: Colors.black87),),
         actions: [
-          IconButton(onPressed: (){
+          ElevatedButton.icon(onPressed: (){
             Navigator.of(context).pushNamed('/addPooling');
-          }, icon: Icon(Icons.add))
+          }, label: Text('Add Rental',style: GoogleFonts.dmSans(fontWeight: FontWeight.w500,color: Colors.black87,fontSize: size.width*.04),),
+              icon: Icon(Icons.add)),
+          SizedBox(width: size.width*.02,)
         ],
       ),
       body:  poolings.isEmpty?
       Center(child: Text('No Pooling request Found',style: GoogleFonts.dmSans(fontWeight: FontWeight.w600,fontSize: size.width*.05),),)
           :
       ListView.builder(itemBuilder: (context,index){
-        return  PoolingCard(poolings[index]);
+        return  Column(
+          children: [
+            PoolingCard(poolings[index]),
+            Divider(endIndent: size.width*.1,indent: size.width*.1,color: Colors.black12,)
+
+          ],
+        );
       },
         itemCount: poolings.length,),
 
