@@ -1,17 +1,16 @@
-import os
 import tempfile
 
 import requests
 from django.conf import settings
 from django.core.files import File
-from google.cloud import speech_v1
+from google.cloud import speech_v1, texttospeech
 from googletrans import Translator
-from gtts import gTTS
 from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.response import Response
 
 from auth_login.models import User
+from config.settings import client_text, GPT_SECRET_KEY
 from .models import VoiceChat
 from .serializers import VoiceChatSerializer
 
@@ -104,7 +103,7 @@ class VoiceChatViewSet(viewsets.ModelViewSet):
 
             #
             # # Save translated response to the voice chat instance
-            self.get_translated_audio(local_language_response, serializer.instance)
+            self.get_translated_audio_tts(local_language_response, serializer)
             print("audio translated")
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
@@ -156,35 +155,45 @@ class VoiceChatViewSet(viewsets.ModelViewSet):
 
     def generate_gpt_response(self, input_text):
         OPENAI_URL = settings.OPENAI_URL
-        response = requests.post(OPENAI_URL, json={"input_text": input_text, "api_key": "1234"})
+        response = requests.post(OPENAI_URL, json={"input_text": input_text, "api_key": GPT_SECRET_KEY})
         if response.status_code != 200:
             return "Error generating GPT response."
         return response.json().get('gpt_response')
 
-    def get_translated_audio(self, malayalam_text, voice_chat_instance):
-        # Translate Malayalam text to audio using gTTS (Google Text-to-Speech)
-        # Save the translated audio file to the voice chat instance
-
-        # Set the language code for Malayalam
-        language_code = 'ml'
-
+    def get_translated_audio_tts(self, text, serializer):
         try:
-            # Create a gTTS object with the specified language and text
-            tts = gTTS(text=malayalam_text, lang=language_code, slow=True, lang_check=False)
+            # Your code to call the new TTS model using Text-to-Speech API
+            temp_file_path = self.get_translated_audio(text)
 
-            # Create a temporary file to save the audio content
-            with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as temp_audio_file:
-                # Save the audio content to the temporary file
-                tts.save(temp_audio_file.name)
+            # Open the temporary file in binary mode and save it to the voice chat instance
+            with open(temp_file_path, 'rb') as audio_file:
+                serializer.instance.response_audio_file.save(f"response_audio{serializer.instance.id}.mp3",
+                                                             File(audio_file))
+                print("Audio file saved successfully.")
 
-                # Open the temporary file in binary mode and save it to the voice chat instance
-                with open(temp_audio_file.name, 'rb') as audio_file:
-                    voice_chat_instance.response_audio_file.save(f"response_audio{voice_chat_instance.id}.mp3",
-                                                              File(audio_file))
+            return serializer.instance.response_audio_file.path
 
         except Exception as e:
-            print("An error occurred during audio translation:", e)
-        finally:
-            os.remove(temp_audio_file.name)
+            print("An error occurred during TTS audio translation:", e)
+            return None
 
-        return voice_chat_instance.translated_audio.path
+    def get_translated_audio(self, text):
+        # Your code for the Text-to-Speech API model
+        input = texttospeech.SynthesisInput(text=text)
+        voice = texttospeech.VoiceSelectionParams(
+            language_code='ml-IN',
+            name='ml-IN-Wavenet-C',
+            ssml_gender=texttospeech.SsmlVoiceGender.FEMALE,
+        )
+        audio_config = texttospeech.AudioConfig(
+            audio_encoding=texttospeech.AudioEncoding.MP3
+        )
+        response = client_text.synthesize_speech(
+            request={"input": input, "voice": voice, "audio_config": audio_config}
+        )
+
+        with tempfile.NamedTemporaryFile(suffix=".mp3", delete=False) as temp_file:
+            temp_file.write(response.audio_content)
+            temp_file_path = temp_file.name
+        print("temp_file_path", temp_file_path)
+        return temp_file_path

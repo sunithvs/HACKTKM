@@ -5,6 +5,7 @@
 import os
 
 from google.auth import load_credentials_from_file
+from google.cloud import speech, texttospeech
 
 from .base import *
 
@@ -281,6 +282,11 @@ LOGGING = {
 GOOGLE_SERVICE_ACCOUNT = os.path.join(BASE_DIR, 'google_cloud.json')
 
 credentials, project_id = load_credentials_from_file(GOOGLE_SERVICE_ACCOUNT)
+client_file = os.getenv("GOOLGE_SERVICE_ACCOUNT")
+
+client_speech = speech.SpeechClient(credentials=credentials)
+client_text = texttospeech.TextToSpeechClient(credentials=credentials)
 OPENAI_SECRET_KEY = env.str("OPENAPI_SECRET_KEY",
                             default="django-insecure-cag@!muz(kv)t31hxk6w3b)^vzt62_n1wo8&@89)ueefs6p4-7")
 OPENAI_URL = "http://farmer.radr.in/gpt/"
+GPT_SECRET_KEY = env.str("GGPT_SECRET_KEY", "1234")
