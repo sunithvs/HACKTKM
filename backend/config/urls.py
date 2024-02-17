@@ -54,6 +54,9 @@ urlpatterns = [
         "inventory/",
         include("inventory.urls")),
     path(
+        "rest/",
+        include("restaurants.urls")),
+    path(
         "voice/",
         include("voicebot.urls")),
     path(

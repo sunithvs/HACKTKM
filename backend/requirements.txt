@@ -86,3 +86,4 @@ typing_extensions==4.9.0
 uritemplate==4.1.1
 urllib3==1.26.18
 wrapt==1.16.0
+scikit-learn==1.2.2
