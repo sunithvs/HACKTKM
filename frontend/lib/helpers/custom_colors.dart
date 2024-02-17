@@ -1,6 +1,6 @@
 import 'dart:ui';
 
 class CustomColors{
-  static const Color primaryColor = Color(0xffA1E334);
+  static  Color primaryColor = const Color(0xffA1E334).withOpacity(.8);
 
 }

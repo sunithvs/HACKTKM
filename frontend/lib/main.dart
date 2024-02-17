@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hacktkm_frontend/providers/chatProvider.dart';
-import 'package:hacktkm_frontend/screens/FarmerBot.dart';
+import 'package:hacktkm_frontend/screens/farmer/FarmerBot.dart';
 import 'package:hacktkm_frontend/screens/landingPage.dart';
 import 'package:provider/provider.dart';
 

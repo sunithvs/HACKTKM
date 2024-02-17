@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hacktkm_frontend/helpers/custom_colors.dart';
-import 'package:hacktkm_frontend/screens/farmerHomeScreen.dart';
+import 'package:hacktkm_frontend/screens/farmer/FarmerHomeScreen.dart';
+import 'package:hacktkm_frontend/screens/farmer/farmerRentals.dart';
 
 
 
@@ -95,7 +96,7 @@ class LandingPage extends StatelessWidget {
                     prefs.setBool("isFarmer", true);
 
 
-                    Navigator.push(context, SlidePageRoute(page: FarmerHomeScreen()));
+                    Navigator.pushReplacement(context, SlidePageRoute(page: FarmerHomeScreen()));
                   },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: CustomColors.primaryColor,

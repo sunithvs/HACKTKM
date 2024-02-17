@@ -1,0 +1,20 @@
+class Rental{
+  final String name;
+  final String imageUrl;
+  final String description;
+  final double price;
+  final String location;
+  final String owner;
+  final double lat;
+  final double long;
+  Rental({
+    required this.name,
+    required this.imageUrl,
+    required this.description,
+    required this.price,
+    required this.location,
+    required this.owner,
+    required this.lat,
+    required this.long,
+  });
+}
