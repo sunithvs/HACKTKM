@@ -25,7 +25,7 @@ class PoolingRequestSerializer(serializers.ModelSerializer):
         model = PoolingRequest
         fields = ['id', 'name', 'user', 'region', 'service_description', 'total_amount_requested',
                   'is_fulfilled', 'created_at', 'total_amount_received', 'remaining_amount_to_be_pooled', 'donations',
-                  'image', 'location']
+                  'image', 'location_lat', 'location_long']
         read_only_fields = ['is_fulfilled', 'total_amount_received', 'remaining_amount_to_be_pooled']
 
     def validate_location_data(self, lat, long, srid=4326):
