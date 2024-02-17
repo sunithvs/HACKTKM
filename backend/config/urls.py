@@ -51,6 +51,9 @@ urlpatterns = [
         "pooling/",
         include("pooling.urls")),
     path(
+        "voice/",
+        include("pooling.urls")),
+    path(
         settings.ADMIN_URL,
         admin.site.urls),
     re_path(
