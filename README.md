@@ -13,8 +13,15 @@ Tell us about your project here
 [Embed the live link of project](live_link)
 
 ## How it Works?
-Explaining the working of the project  
-Embed video of project demo
+
+### Project Demo: https://youtu.be/c5gM_J3aDIQ
+### Features
+1. Equipment Renting
+2. Equipment Pooling
+3. MarketPlace linked with ONDC for better market opportunity
+4. Voice Chatbot in native language
+5. Buyer App for restaurants to buy directly from farmers
+6. Sales Prediction
 
 ## Technologies used
 Flutter
