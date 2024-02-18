@@ -24,15 +24,15 @@ Tell us about your project here
 6. Sales Prediction
 
 ## Technologies used
-Flutter
-Django
-Flask
-AWS
-Docker
-Google Speech-to-Text API
-Google Translate API
-Google Text-to-Speech API
-OpenAI ChatCompletion API
+1. Flutter
+2. Django
+3. Flask
+4. AWS
+5. Docker
+6. Google Speech-to-Text API
+7. Google Translate API
+8. Google Text-to-Speech API
+9. OpenAI ChatCompletion API
 
 ## How to configure
 ## Frontend Mobile App Installation
