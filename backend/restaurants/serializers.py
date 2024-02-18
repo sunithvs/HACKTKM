@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import PredictionRequest, Prediction, food_items
+from .models import PredictionRequest, Prediction, food_items, FoodItemIngredient
 from .utils import predict_customers
 
 
@@ -14,10 +14,11 @@ class PredictionSerializer(serializers.ModelSerializer):
 class PredictionRequestSerializer(serializers.ModelSerializer):
     predictions = PredictionSerializer(many=True, read_only=True)
 
+    ingredients = serializers.SerializerMethodField(read_only=True)
+
     class Meta:
         model = PredictionRequest
-        fields = ['id', 'day', 'events', 'event_size', 'festival', 'predictions']
-        read_only_fields = ['predictions']
+        fields = ['id', 'day', 'events', 'event_size', 'festival', 'predictions', 'ingredients']
 
     def create(self, validated_data):
         # Create the prediction request
@@ -34,3 +35,13 @@ class PredictionRequestSerializer(serializers.ModelSerializer):
 
         # Return the prediction request
         return prediction_request
+
+    def get_ingredients(self, obj):
+        return obj.ingredients()
+
+
+class FoodItemIngredientSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FoodItemIngredient
+        fields = ['id', 'food_item', 'ingredient', 'quantity', 'unit']
+        read_only_fields = ['id']
