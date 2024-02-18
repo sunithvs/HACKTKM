@@ -81,7 +81,10 @@ class ProductSerializer(serializers.ModelSerializer):
         # Create the product with the associated farmer
         validated_data['category'] = validated_data['category']['name']
         product = Product.objects.create(farmer=farmer, **validated_data)
-
+        try:
+            add_product_to_ondc(product)
+        except Exception as e:
+            print(e)
         return product
 
     def validate_category_name(self, value):
