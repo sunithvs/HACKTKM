@@ -114,7 +114,7 @@ Setting up a Django project after cloning it from a repository involves a few ke
  2. **From the project root folder:**
     Run
     ```bash
-   flutter run
+    flutter run
    ```
 ## Other Links
  Figma Design: https://www.figma.com/file/jZKUN506FcrYXErpw69pYy/HackTKM?type=design&node-id=736-1745&mode=design&t=s4gSJkgVCMsjVR3o-0
