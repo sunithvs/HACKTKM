@@ -290,3 +290,4 @@ OPENAI_SECRET_KEY = env.str("OPENAPI_SECRET_KEY",
                             default="django-insecure-cag@!muz(kv)t31hxk6w3b)^vzt62_n1wo8&@89)ueefs6p4-7")
 OPENAI_URL = "http://farmer.radr.in/gpt/"
 GPT_SECRET_KEY = env.str("GGPT_SECRET_KEY", "1234")
+ONDC_API_URL = "https://farmer.radr.in/ondc/"
