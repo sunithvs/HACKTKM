@@ -1,9 +1,6 @@
-import requests
-from rest_framework import serializers
-
 from auth_login.models import User
-from config.settings import ONDC_API_URL
 from inventory.models import Category, Product
+from rest_framework import serializers
 
 
 def add_product_to_ondc(product):
@@ -41,15 +38,6 @@ def add_product_to_ondc(product):
             }
         }
     }
-    try:
-        requests.post(
-            ONDC_API_URL,
-            json=prod
-        )
-    except requests.exceptions.RequestException as e:
-        print(e)
-    except Exception as e:
-        print(e)
 
 
 class ProductCategorySerializer(serializers.ModelSerializer):
