@@ -1,8 +1,6 @@
 import tempfile
 
 import requests
-from auth_login.models import User
-from config.settings import client_text, GPT_SECRET_KEY
 from django.conf import settings
 from django.core.files import File
 from google.cloud import speech_v1, texttospeech
@@ -11,6 +9,8 @@ from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.response import Response
 
+from auth_login.models import User
+from config.settings import client_text, GPT_SECRET_KEY
 from .models import VoiceChat
 from .serializers import VoiceChatSerializer
 
@@ -156,8 +156,9 @@ class VoiceChatViewSet(viewsets.ModelViewSet):
 
     def generate_gpt_response(self, input_text):
         OPENAI_URL = settings.OPENAI_URL
+
         response = requests.post(OPENAI_URL, json={"input_text": input_text, "api_key": GPT_SECRET_KEY})
-        print(response.json().get('gpt_response'))
+
         if response.status_code != 200:
             return "Error generating GPT response."
         return response.json().get('gpt_response')
