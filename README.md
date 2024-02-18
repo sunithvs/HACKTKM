@@ -42,8 +42,6 @@ Tell us about your project here
 
 #### 2. Clone this repo
 
-### 3. 
-
 ### 3. Run pub get
 
 
