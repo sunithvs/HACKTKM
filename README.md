@@ -28,11 +28,12 @@ Tell us about your project here
 2. Django
 3. Flask
 4. AWS
-5. Docker
-6. Google Speech-to-Text API
-7. Google Translate API
-8. Google Text-to-Speech API
-9. OpenAI ChatCompletion API
+5. ONDC
+6. Docker
+7. Google Speech-to-Text API
+8. Google Translate API
+9. Google Text-to-Speech API
+10. OpenAI ChatCompletion API
 
 ## How to configure
 ## Frontend Mobile App Installation
