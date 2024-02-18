@@ -12,8 +12,8 @@ Tell us about your project here
 ## Link to Project
 [Embed the live link of project](live_link)
 
-## How it Works ?
-Explaining the working of project  
+## How it Works?
+Explaining the working of the project  
 Embed video of project demo
 
 ## Technologies used
@@ -33,7 +33,9 @@ OpenAI ChatCompletion API
 
 #### 1. [Setup Flutter](https://flutter.dev/docs/get-started/install)
 
-#### 2. Clone the repo
+#### 2. Clone this repo
+
+### 3. 
 
 ### 3. Run pub get
 
@@ -109,4 +111,5 @@ Setting up a Django project after cloning it from a repository involves a few ke
    ```
 ## Other Links
  Figma Design: https://www.figma.com/file/jZKUN506FcrYXErpw69pYy/HackTKM?type=design&node-id=736-1745&mode=design&t=s4gSJkgVCMsjVR3o-0
+ API Docs: https://farmer.radr.in/swagger/
 
