@@ -7,6 +7,8 @@ import 'package:hacktkm_frontend/screens/farmer/addProduct.dart';
 import 'package:hacktkm_frontend/screens/farmer/pooling/addPooling.dart';
 import 'package:hacktkm_frontend/screens/farmer/rentals/addRental.dart';
 import 'package:hacktkm_frontend/screens/landingPage.dart';
+import 'package:hacktkm_frontend/screens/restaurant/predictionResult.dart';
+import 'package:hacktkm_frontend/screens/restaurant/productDetails.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -28,6 +30,8 @@ class HackTKM extends StatelessWidget {
             '/addRental': (context) =>  const AddRental(),
             '/addPooling': (context) =>  const AddPooling(),
             '/addProduct': (context) =>  const AddProduct(),
+            '/predictionResult': (context) =>   PredictionResult(),
+
           },
           debugShowCheckedModeBanner: false,
           home: const LandingPage(),

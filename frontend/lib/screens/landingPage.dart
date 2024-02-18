@@ -5,6 +5,7 @@ import 'package:hacktkm_frontend/helpers/custom_colors.dart';
 import 'package:hacktkm_frontend/screens/farmer/FarmerHomeScreen.dart';
 import 'package:hacktkm_frontend/screens/farmer/rentals/farmerRentals.dart';
 import 'package:hacktkm_frontend/screens/restaurant/productListing.dart';
+import 'package:hacktkm_frontend/screens/restaurant/restaurantHomeScreen.dart';
 
 
 
@@ -118,7 +119,7 @@ class LandingPage extends StatelessWidget {
                       prefs.setBool("isFarmer", false);
 
                       Navigator.pushReplacement(
-                          context, SlidePageRoute(page: const ProductListing()));
+                          context, SlidePageRoute(page: const RestaurantHomeScreen()));
                     },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white,
