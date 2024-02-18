@@ -118,4 +118,5 @@ Setting up a Django project after cloning it from a repository involves a few ke
 ## Other Links
  Figma Design: https://www.figma.com/file/jZKUN506FcrYXErpw69pYy/HackTKM?type=design&node-id=736-1745&mode=design&t=s4gSJkgVCMsjVR3o-0
  API Docs: https://farmer.radr.in/swagger/
+ PitchDeck: https://www.canva.com/design/DAF4zLqD2W4/4Opz2VPIUoJP5SWV0hIXkA/edit?utm_content=DAF4zLqD2W4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
